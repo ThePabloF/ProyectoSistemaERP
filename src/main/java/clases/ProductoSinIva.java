@@ -6,14 +6,11 @@ public class ProductoSinIva extends Producto {
         super(id, nombreProducto, precioUnitario, proveedor, categoriaProducto, descripcionProducto);
     }
 
+
     @Override
     public double calcularCosto() {
         return getPrecioUnitario();
     }
 
-    @Override
-    public String mostrarDetalle() {
-        return "";
-    }
 
 }

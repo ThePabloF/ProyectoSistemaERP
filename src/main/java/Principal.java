@@ -51,18 +51,20 @@ public class Principal {
         SolicitudCompra solicitudCompra2 = new SolicitudCompra(201,solicitante2,fechaActual);
         SolicitudCompra solicitudCompra3 = new SolicitudCompra(202,solicitante3,fechaActual);
 
+        solicitudCompra1.setEstadoSolicitud(EstadoSolicitud.SOLICITADA);
+        solicitudCompra2.setEstadoSolicitud(EstadoSolicitud.SOLICITADA);
+        solicitudCompra3.setEstadoSolicitud(EstadoSolicitud.SOLICITADA);
+
+        solicitudCompra1.addDetallesSolicitud(detalleSolicitud1);
+        solicitudCompra2.addDetallesSolicitud(detalleSolicitud2);
+        solicitudCompra3.addDetallesSolicitud(detalleSolicitud3);
+
         listaSolicitudesCompra.add(solicitudCompra1);
         listaSolicitudesCompra.add(solicitudCompra2);
         listaSolicitudesCompra.add(solicitudCompra3);
 
         Ejecutable ejecutable = new Ejecutable(listaProveedores, listaProductos,listaDetalleSolicitud,listaSolicitudesCompra);
-////        ejecutable.crearProveedor();
-////      ejecutable.crearProveedor();
-//////        ejecutable.listarProveedores();
-        ejecutable.crearProducto();
-////        ejecutable.listarProductosConProveedor();
-////        ejecutable.buscarProductoPorNombre();
-        ejecutable.crearSolicitud();
-        ejecutable.listarSolicitudes();
+
+        ejecutable.menuPrincipal();
     }
 }

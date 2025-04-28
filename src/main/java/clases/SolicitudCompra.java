@@ -58,4 +58,15 @@ public class SolicitudCompra {
     public void addDetallesSolicitud(DetalleSolicitud detallesSolicitud) {
         this.detallesSolicitud.add(detallesSolicitud);
     }
+
+    @Override
+    public String toString() {
+        return "SolicitudCompra{" +
+                "numSolicitud=" + numSolicitud +
+                ", solicitante=" + solicitante +
+                ", estadoSolicitud=" + estadoSolicitud +
+                ", detallesSolicitud=" + detallesSolicitud +
+                ", fechaSolicitud=" + fechaSolicitud +
+                '}';
+    }
 }

@@ -67,6 +67,16 @@ public abstract class Producto implements Calculable {
 
     // METODOS DE PRODUCTO
     public abstract double calcularCosto();
-    public abstract String mostrarDetalle();
 
+    @Override
+    public String toString() {
+        return "Producto{" +
+                "id=" + id +
+                ", nombreProducto='" + nombreProducto + '\'' +
+                ", precioUnitario=" + precioUnitario +
+                ", proveedor=" + proveedor +
+                ", categoriaProducto=" + categoriaProducto +
+                ", descripcionProducto='" + descripcionProducto + '\'' +
+                '}';
+    }
 }

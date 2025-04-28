@@ -11,8 +11,5 @@ public class ProductoConIva extends Producto{
         return  (getPrecioUnitario()*0.15)+getPrecioUnitario();
     }
 
-    @Override
-    public String mostrarDetalle() {
-        return "";
-    }
+
 }
