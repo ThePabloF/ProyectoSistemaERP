@@ -134,6 +134,7 @@ public class Ejecutable {
         System.out.println("2. Listar Solicitudes");
         System.out.println("3. Buscar Solicitud");
         System.out.println("4. Ver Detalle Solicitud");
+        System.out.println("5. Cambiar Estado Solicitud");
         int opcion = scanner.nextInt();
         switch (opcion) {
             case 1:
@@ -151,6 +152,8 @@ public class Ejecutable {
             case 4:
                 verDetalleSolicitud();
                 break;
+            case 5:
+                cambiarEstadoSolicitud();
             default:
                 System.out.println("Opcion no valida");
                 break;
@@ -458,6 +461,47 @@ public class Ejecutable {
             }
         }
     }
+
+    public void cambiarEstadoSolicitud() {
+
+        System.out.println("Ingrese el número de la solicitud que desea modificar:");
+        int numeroSolicitud = scanner.nextInt();
+        scanner.nextLine(); // limpiar buffer
+
+        SolicitudCompra solicitudEncontrada = null;
+
+        for (SolicitudCompra solicitud : solicitudesCompra) {
+            if (solicitud.getNumSolicitud() == numeroSolicitud) {
+                solicitudEncontrada = solicitud;
+                break;
+            }
+        }
+
+        if (solicitudEncontrada == null) {
+            System.out.println("Solicitud no encontrada.");
+            return;
+        }
+
+        System.out.println("Estado actual de la solicitud: " + solicitudEncontrada.getEstadoSolicitud());
+        System.out.println("Seleccione el nuevo estado:");
+
+        EstadoSolicitud[] estados = EstadoSolicitud.values();
+        for (int i = 0; i < estados.length; i++) {
+            System.out.println((i + 1) + ". " + estados[i]);
+        }
+
+        int opcion = scanner.nextInt();
+        scanner.nextLine(); // limpiar buffer
+
+        if (opcion >= 1 && opcion <= estados.length) {
+            EstadoSolicitud nuevoEstado = estados[opcion - 1];
+            solicitudEncontrada.setEstadoSolicitud(nuevoEstado);
+            System.out.println("Estado actualizado a: " + nuevoEstado);
+        } else {
+            System.out.println("Opción inválida. Estado no actualizado.");
+        }
+    }
+
 
 
 }
