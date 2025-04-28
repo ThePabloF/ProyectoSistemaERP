@@ -27,6 +27,7 @@ public class Ejecutable {
     //------------------------------------------------------------MENU----------------------------------------------------------------------------------------------------------------
 
     public void menuPrincipal() {
+        System.out.println("---------MENU DE PRINCIPAL---------");
         System.out.println("1. Productos");
         System.out.println("2. Solicitudes");
         System.out.println("3. Proveedores");
@@ -50,6 +51,7 @@ public class Ejecutable {
 
         }
         while (opcion!= 4){
+            System.out.println("---------MENU DE PRINCIPAL---------");
             System.out.println("1. Productos");
             System.out.println("2. Solicitudes");
             System.out.println("3. Proveedores");
@@ -233,6 +235,7 @@ public class Ejecutable {
 
         System.out.println("Ingrese nombre del producto:");
         String nombreProducto = scanner.nextLine();
+        scanner.next();
         System.out.println("Ingrese precio unitario:");
         double precioUnitario = scanner.nextDouble();
         scanner.nextLine();
