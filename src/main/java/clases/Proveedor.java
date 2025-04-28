@@ -12,14 +12,13 @@ public class Proveedor {
     private String correo;
     private Direccion direccion;
 
-    public Proveedor(int id, String nombre, String nombreDepartamento, String telefono, String correo, Direccion direccion) {
-        this.id = id;
+    public Proveedor(String nombre, String nombreDepartamento, String telefono, String correo, Direccion direccion) {
         this.nombre = nombre;
         this.nombreDepartamento = nombreDepartamento;
         this.telefono = telefono;
         this.correo = correo;
         this.direccion = direccion;
-        productos = new ArrayList<>();
+        this.productos = new ArrayList<>();
     }
 
     public int getId() {
@@ -66,10 +65,8 @@ public class Proveedor {
         return direccion;
     }
 
-    public void setDireccion(Direccion direccion) {
-        this.direccion = direccion;
-    }
     //METODOS
+
     public List<Producto> getProductos() {
         return productos;
     }
@@ -77,4 +74,16 @@ public class Proveedor {
         this.productos.add(producto);
     }
 
+    @Override
+    public String toString() {
+        return "Proveedor{" +
+                "id=" + id +
+                ", nombre='" + nombre + '\'' +
+                ", nombreDepartamento='" + nombreDepartamento + '\'' +
+                ", productos=" + productos +
+                ", telefono='" + telefono + '\'' +
+                ", correo='" + correo + '\'' +
+                ", direccion=" + direccion +
+                '}';
+    }
 }

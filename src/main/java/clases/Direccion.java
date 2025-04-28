@@ -8,7 +8,7 @@ public class Direccion {
     private String provincia;
     private String pais;
 
-    public Direccion(String callePrincipal, String calleSecundaria, String ciudad, String numeroPropiedad, String pais, String provincia) {
+    public Direccion(String callePrincipal, String calleSecundaria,String numeroPropiedad, String ciudad, String pais, String provincia) {
         this.callePrincipal = callePrincipal;
         this.calleSecundaria = calleSecundaria;
         this.ciudad = ciudad;

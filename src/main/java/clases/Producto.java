@@ -1,6 +1,6 @@
 package clases;
 
-public abstract class Producto implements  Metodos{
+public abstract class Producto implements Calculable {
     private int id;
     private String nombreProducto;
     private double precioUnitario;

@@ -3,17 +3,25 @@ package clases;
 import java.util.ArrayList;
 import java.util.List;
 
-public class DetalleSolicitud implements Metodos {
-    private List<Producto> productos;
+public class DetalleSolicitud {
+    private Producto producto;
     private int cantidad;
-    private String descripcion;
+    private String justificacion;
 
-    public DetalleSolicitud(int cantidad, String descripcion) {
+    public DetalleSolicitud(int cantidad, String justificacion, Producto producto) {
         this.cantidad = cantidad;
-        this.descripcion = descripcion;
-        this.productos = new ArrayList<Producto>();
+        this.justificacion = justificacion;
+        this.producto = producto;
     }
 
+
+    public Producto getProducto() {
+        return producto;
+    }
+
+    public void setProducto(Producto producto) {
+        this.producto = producto;
+    }
 
     public int getCantidad() {
         return cantidad;
@@ -23,27 +31,11 @@ public class DetalleSolicitud implements Metodos {
         this.cantidad = cantidad;
     }
 
-    public String getDescripcion() {
-        return descripcion;
+    public String getJustificacion() {
+        return justificacion;
     }
 
-    public void setDescripcion(String descripcion) {
-        this.descripcion = descripcion;
-    }
-    public List<Producto> getProductos() {
-        return productos;
-    }
-    public  void  agregarProducto(Producto producto) {
-        productos.add(producto);
-    }
-
-    @Override
-    public double calcularCosto() {
-        return 0;
-    }
-
-    @Override
-    public String mostrarDetalle() {
-        return "";
+    public void setJustificacion(String descripcion) {
+        this.justificacion = descripcion;
     }
 }

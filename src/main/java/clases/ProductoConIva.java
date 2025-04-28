@@ -8,7 +8,7 @@ public class ProductoConIva extends Producto{
 
     @Override
     public double calcularCosto() {
-        return 0;
+        return  (getPrecioUnitario()*0.15)+getPrecioUnitario();
     }
 
     @Override
