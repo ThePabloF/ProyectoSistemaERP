@@ -6,15 +6,14 @@ import java.util.List;
 public class Proveedor {
     private int id;
     private String nombre;
-    private String nombreDepartamento;
     private List<Producto> productos;
     private String telefono;
     private String correo;
     private Direccion direccion;
 
-    public Proveedor(String nombre, String nombreDepartamento, String telefono, String correo, Direccion direccion) {
+    public Proveedor(int id, String nombre, String telefono, String correo, Direccion direccion) {
+        this.id = id;
         this.nombre = nombre;
-        this.nombreDepartamento = nombreDepartamento;
         this.telefono = telefono;
         this.correo = correo;
         this.direccion = direccion;
@@ -35,14 +34,6 @@ public class Proveedor {
 
     public void setNombre(String nombre) {
         this.nombre = nombre;
-    }
-
-    public String getNombreDepartamento() {
-        return nombreDepartamento;
-    }
-
-    public void setNombreDepartamento(String nombreDepartamento) {
-        this.nombreDepartamento = nombreDepartamento;
     }
 
     public String getTelefono() {
@@ -79,7 +70,6 @@ public class Proveedor {
         return "Proveedor{" +
                 "id=" + id +
                 ", nombre='" + nombre + '\'' +
-                ", nombreDepartamento='" + nombreDepartamento + '\'' +
                 ", productos=" + productos +
                 ", telefono='" + telefono + '\'' +
                 ", correo='" + correo + '\'' +

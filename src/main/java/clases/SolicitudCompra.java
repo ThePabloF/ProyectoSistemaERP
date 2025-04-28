@@ -11,7 +11,7 @@ public class SolicitudCompra {
     private List<DetalleSolicitud> detallesSolicitud;
     private GregorianCalendar fechaSolicitud;
 
-    public SolicitudCompra(int numSolicitud, Solicitante solicitante, EstadoSolicitud estadoSolicitud, GregorianCalendar fechaSolicitud) {
+    public SolicitudCompra(int numSolicitud, Solicitante solicitante, GregorianCalendar fechaSolicitud) {
         this.numSolicitud = numSolicitud;
         this.solicitante = solicitante;
         this.estadoSolicitud = estadoSolicitud;
