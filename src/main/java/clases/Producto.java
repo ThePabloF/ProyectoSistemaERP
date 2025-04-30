@@ -70,13 +70,12 @@ public abstract class Producto implements Calculable {
 
     @Override
     public String toString() {
-        return "Producto{" +
-                "id=" + id +
-                ", nombreProducto='" + nombreProducto + '\'' +
-                ", precioUnitario=" + precioUnitario +
-                ", proveedor=" + proveedor +
-                ", categoriaProducto=" + categoriaProducto +
-                ", descripcionProducto='" + descripcionProducto + '\'' +
-                '}';
+        return "Producto: \n" +
+                "  id = " + id + ",\n" +
+                "  nombreProducto = '" + nombreProducto + "',\n" +
+                "  precioUnitario = " + precioUnitario + ",\n" +
+                "  proveedor = " + proveedor.getNombre() + ",\n" +
+                "  categoriaProducto = " + categoriaProducto + ",\n" +
+                "  descripcionProducto = '" + descripcionProducto + "'\n" ;
     }
 }

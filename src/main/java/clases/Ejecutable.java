@@ -33,6 +33,8 @@ public class Ejecutable {
         System.out.println("3. Proveedores");
         System.out.println("4. Salir");
         int opcion = scanner.nextInt();
+        scanner.nextLine();
+
         switch (opcion) {
             case 1:
                 menuProducto();
@@ -57,6 +59,8 @@ public class Ejecutable {
             System.out.println("3. Proveedores");
             System.out.println("4. Salir");
              opcion = scanner.nextInt();
+            scanner.nextLine();
+
             switch (opcion) {
                 case 1:
                     menuProducto();
@@ -87,6 +91,7 @@ public class Ejecutable {
         System.out.println("2. Listar Productos");
         System.out.println("3. Buscar Producto");
         int opcion = scanner.nextInt();
+        scanner.nextLine();
         switch (opcion) {
             case 1:
                 crearProducto();
@@ -136,6 +141,7 @@ public class Ejecutable {
         System.out.println("4. Ver Detalle Solicitud");
         System.out.println("5. Cambiar Estado Solicitud");
         int opcion = scanner.nextInt();
+        scanner.nextLine();
         switch (opcion) {
             case 1:
                 crearSolicitud();
@@ -144,16 +150,14 @@ public class Ejecutable {
                 listarSolicitudes();
                 break;
             case 3:
-                SolicitudCompra sc = buscarSolicitudPorId();
-                if (sc != null) {
-                    System.out.println("Solicitud encontrada: "+sc);
-                }
+                buscarSolicitudPorId();
                 break;
             case 4:
                 verDetalleSolicitud();
                 break;
             case 5:
                 cambiarEstadoSolicitud();
+                break;
             default:
                 System.out.println("Opcion no valida");
                 break;
@@ -221,6 +225,7 @@ public class Ejecutable {
             Proveedor proveedorMedio = proveedores.get(medio);
 
             if (proveedorMedio.getId() == idBuscado) {
+                System.out.println("Proveedor encontrado: "+proveedorMedio.getNombre());
                 return proveedorMedio;
             } else if (proveedorMedio.getId() < idBuscado) {
                 izquierda = medio + 1;
@@ -228,7 +233,7 @@ public class Ejecutable {
                 derecha = medio - 1;
             }
         }
-
+        System.out.println("Proveedor no encontrado con id: "+ idBuscado);
         return null;
     }
 
@@ -237,8 +242,7 @@ public class Ejecutable {
     public void crearProducto() {
 
         System.out.println("Ingrese nombre del producto:");
-        String nombreProducto = scanner.nextLine();
-        scanner.next();
+        String nombreProducto = scanner.next();
         System.out.println("Ingrese precio unitario:");
         double precioUnitario = scanner.nextDouble();
         scanner.nextLine();
@@ -265,7 +269,6 @@ public class Ejecutable {
             }
         }
         // Mostrar proveedores disponibles
-        System.out.println("Proveedores disponibles:");
         listarProveedores();
         System.out.println("Ingrese el ID del proveedor al que pertenece el producto:");
         int idProveedor = scanner.nextInt();
@@ -278,21 +281,14 @@ public class Ejecutable {
             scanner.nextLine();
             proveedorSeleccionado = buscarProveedorPorId(idProveedor);
         }
-        System.out.println("¿Su producto tiene iva?(true/false)");
-
-        boolean iva = scanner.nextBoolean();
-        while (iva != true || iva != false) {
-            System.out.println("No se puede registrar el producto.");
-            System.out.println("¿Su producto tiene iva?(true/false)");
-            iva = scanner.nextBoolean();
-        }
-        if (iva == true) {
+        boolean iva = verIva();
+        if (iva) {
             Producto nuevoProducto = new ProductoConIva(idproductos++, nombreProducto, precioUnitario, proveedorSeleccionado, categoriaSeleccionada, descripcion);
             System.out.println(nuevoProducto.calcularCosto());
             productos.add(nuevoProducto);
             proveedorSeleccionado.getProductos().add(nuevoProducto);
             System.out.println(" Producto registrado exitosamente.");
-        } else if (iva == false) {
+        } else {
             Producto nuevoProducto = new ProductoSinIva(idproductos++, nombreProducto, precioUnitario, proveedorSeleccionado, categoriaSeleccionada, descripcion);
             System.out.println(nuevoProducto.calcularCosto());
             productos.add(nuevoProducto);
@@ -300,6 +296,21 @@ public class Ejecutable {
 
             System.out.println(" Producto registrado exitosamente.");
         }
+    }
+    public boolean verIva(){
+        Boolean conIva = null;
+        while (conIva == null) {
+            System.out.println("¿Su producto tiene IVA? (true/false):");
+            String respuesta = scanner.nextLine().toLowerCase();
+            if (respuesta.equals("true")) {
+                return true;
+            } else if (respuesta.equals("false")) {
+                return false;
+            } else {
+                System.out.println("Respuesta inválida. Escriba 'true' o 'false'.");
+            }
+        }
+        return conIva;
     }
 
     //------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -337,17 +348,13 @@ public class Ejecutable {
     }
 
     public Producto buscarProductoPorNombre() {
-        if (productos.isEmpty()) {
-            System.out.println("No hay lista de productos.");
-            return null;
-        } else {
+
             System.out.println("Ingrese el nombre del producto:");
             String nombreBuscado = scanner.nextLine().toLowerCase();
             for (Producto p : productos) {
                 if (p.getNombreProducto().toLowerCase().contains(nombreBuscado)) {
-                    return p;
-                }
-            }
+                    System.out.println("Producto Encontrado: \n" + p);
+                    return p;}
         }
         System.out.println("No se encontro el producto a buscar.");
         return null;
@@ -430,12 +437,13 @@ public class Ejecutable {
         int id = scanner.nextInt();
             for (SolicitudCompra solicitudCompra : solicitudesCompra) {
                 if (solicitudCompra.getNumSolicitud() == id) {
+                    System.out.println("Solicitud encontrada: "+solicitudCompra.getNumSolicitud()+"| "+"Solicitante: "+solicitudCompra.getSolicitante().getNombre());
                     return solicitudCompra;
                 }
             }
 
         System.out.println("No se encontro la solicitud a buscar.");
-        return null;
+     return null;
 
     }
     public void verDetalleSolicitud() {
@@ -456,6 +464,7 @@ public class Ejecutable {
                     System.out.println("  Categoría: " + producto.getCategoriaProducto());
                     System.out.println("  Cantidad Solicitada: " + detalle.getCantidad());
                     System.out.println("  Justificación: " + detalle.getJustificacion());
+                    System.out.println("  Total Solicitud: "+solicitudCompraEncontrada.calcularCosto());
 
                 }
             }
@@ -466,7 +475,7 @@ public class Ejecutable {
 
         System.out.println("Ingrese el número de la solicitud que desea modificar:");
         int numeroSolicitud = scanner.nextInt();
-        scanner.nextLine(); // limpiar buffer
+        scanner.nextLine();
 
         SolicitudCompra solicitudEncontrada = null;
 
@@ -491,7 +500,7 @@ public class Ejecutable {
         }
 
         int opcion = scanner.nextInt();
-        scanner.nextLine(); // limpiar buffer
+        scanner.nextLine();
 
         if (opcion >= 1 && opcion <= estados.length) {
             EstadoSolicitud nuevoEstado = estados[opcion - 1];

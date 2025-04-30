@@ -4,12 +4,13 @@ import java.util.ArrayList;
 import java.util.GregorianCalendar;
 import java.util.List;
 
-public class SolicitudCompra {
+public class SolicitudCompra implements Calculable {
     private int numSolicitud;
     private Solicitante solicitante;
     private EstadoSolicitud estadoSolicitud;
     private List<DetalleSolicitud> detallesSolicitud;
     private GregorianCalendar fechaSolicitud;
+    private double costoTotal;
 
     public SolicitudCompra(int numSolicitud, Solicitante solicitante, GregorianCalendar fechaSolicitud) {
         this.numSolicitud = numSolicitud;
@@ -58,6 +59,20 @@ public class SolicitudCompra {
     public void addDetallesSolicitud(DetalleSolicitud detallesSolicitud) {
         this.detallesSolicitud.add(detallesSolicitud);
     }
+    public double getCostoTotal() {
+        return costoTotal;
+    }
+    @Override
+    public double calcularCosto() {
+        double total = 0;
+        for (DetalleSolicitud detallesSolicitud : detallesSolicitud) {
+            total += detallesSolicitud.getProducto().calcularCosto();
+        }
+        return total;
+
+    }
+
+
 
     @Override
     public String toString() {
@@ -67,6 +82,7 @@ public class SolicitudCompra {
                 ", estadoSolicitud=" + estadoSolicitud +
                 ", detallesSolicitud=" + detallesSolicitud +
                 ", fechaSolicitud=" + fechaSolicitud +
+                ", totalSolicitud=" + calcularCosto() +
                 '}';
     }
 }
